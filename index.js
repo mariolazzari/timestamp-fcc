@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 app.get("/api/:date", (req, res) => {
   const date = new Date(req.params.date);
   if (date === "Invalid Date") {
-    return res.status(400).json(date);
+    return res.status(400).json({ error: date });
   }
 
   const timestamp = {
