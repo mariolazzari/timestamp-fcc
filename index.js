@@ -1,6 +1,7 @@
 // index.js
 // where your node app starts
 require("dotenv").config();
+const port = +process.env.PORT;
 
 // init project
 const express = require("express");
@@ -22,14 +23,15 @@ app.get("/", (req, res) => {
 // your first API endpoint...
 app.get("/api/:date", (req, res) => {
   const date = new Date(req.params.date);
-  console.log(date);
+  const timestamp = {
+    unix: date.getTime(),
+    utc: date.toUTCString(),
+  };
 
-  res.json({ greeting: "hello API" });
+  res.json(timestamp);
 });
 
 // listen for requests :)
-const listener = app.listen(process.env.PORT, () =>
+const listener = app.listen(port, () =>
   console.log("Your app is listening on port " + listener.address().port)
 );
-
-console.log(process.env.PORT);
