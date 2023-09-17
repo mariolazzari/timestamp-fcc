@@ -41,7 +41,7 @@ app.get("/api/:date", (req, res) => {
   const unix = isNaN(date) ? new Date(date).getTime() : +date;
   const utc = isNaN(date)
     ? new Date(date).toUTCString()
-    : new Date(+date / 1000).toUTCString();
+    : new Date(+date).toUTCString();
 
   res.json({ unix, utc });
 });
