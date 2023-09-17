@@ -43,6 +43,10 @@ app.get("/api/:date", (req, res) => {
     ? new Date(date).toUTCString()
     : new Date(+date).toUTCString();
 
+  if (utc == INVALID_DATE) {
+    return res.status(400).json({ error: INVALID_DATE });
+  }
+
   res.json({ unix, utc });
 });
 
