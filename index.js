@@ -24,7 +24,10 @@ const INVALID_DATE = "Invalid Date";
 
 // your first API endpoint...
 app.get("/api/:date", (req, res) => {
-  const { date } = req.params;
+  let date = req.params.date;
+  if (!date) {
+    date = new Date();
+  }
 
   const unix = isNaN(date) ? new Date(date).getTime() : +date;
   const utc = isNaN(date)
