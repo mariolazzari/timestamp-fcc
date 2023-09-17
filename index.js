@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 const INVALID_DATE = "Invalid Date";
 
 // empty date
-app.get("/api", (req, res) => {
+app.get("/api", (_req, res) => {
   const date = new Date();
   const unix = date.getTime();
   const utc = date.toUTCString();
