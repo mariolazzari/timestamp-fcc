@@ -24,17 +24,14 @@ const INVALID_DATE = "Invalid Date";
 
 // your first API endpoint...
 app.get("/api/:date", (req, res) => {
-  const date = new Date(req.params.date);
-  if (date == INVALID_DATE) {
-    return res.status(400).json({ error: INVALID_DATE });
-  }
+  const { date } = req.params;
 
-  const timestamp = {
-    unix: date.getTime(),
-    utc: date.toUTCString(),
-  };
+  const unix = isNaN(date) ? new Date(date).getTime() : +date;
+  const utc = isNaN(date)
+    ? new Date(date).toUTCString()
+    : new Date(+date / 1000).toUTCString();
 
-  res.json(timestamp);
+  res.json({ unix, utc });
 });
 
 // listen for requests :)
