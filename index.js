@@ -22,6 +22,15 @@ app.get("/", (req, res) => {
 
 const INVALID_DATE = "Invalid Date";
 
+// empty date
+app.get("/api", (req, res) => {
+  const date = new Date();
+  const unix = date.getTime();
+  const utc = date.toUTCString();
+
+  res.status(200).json({ unix, utc });
+});
+
 // your first API endpoint...
 app.get("/api/:date", (req, res) => {
   let date = req.params.date;
