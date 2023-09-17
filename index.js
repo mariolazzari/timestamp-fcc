@@ -20,11 +20,13 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
+const INVALID_DATE = "Invalid Date";
+
 // your first API endpoint...
 app.get("/api/:date", (req, res) => {
   const date = new Date(req.params.date);
-  if (date === "Invalid Date") {
-    return res.status(400).json({ error: date });
+  if (date == INVALID_DATE) {
+    return res.status(400).json({ error: INVALID_DATE });
   }
 
   const timestamp = {
